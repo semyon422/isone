@@ -3,3 +3,5 @@ libraries/*.exe
 libraries/*.h
 libraries/love-0.10.2-win64
 img
+libraries/soul
+libraries/tweaks

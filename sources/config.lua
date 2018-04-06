@@ -16,6 +16,7 @@ local button = soul.ui.RectangleTextButton:new({
 	layer = 2,
 	cs = soul.CS:new(nil, 0.5, 0.5, 0.5, 0.5, "h", 600),
 	text = "play",
+	textColor = {255, 255, 255, 255},
 	rectangleColor = {255, 255, 255, 15},
 	mode = "fill",
 	limit = 0.2,

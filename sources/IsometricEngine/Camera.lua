@@ -13,6 +13,8 @@ Camera.load = function(self)
 	self.cursory = 0
 	self.cursorz = 0
 	
+	self.currentBlockId = 1
+	
 	self.one = 128
 	
 	self:setCallbacks()
@@ -28,6 +30,20 @@ Camera.setCallbacks = function(self)
 		self.cursorz = self.cursorz + d
 		self.cursorx, self.cursory = self:projectBack(love.mouse.getX(), love.mouse.getY(), self.cursorz)
 	end)
+	soul.setCallback("mousepressed", self, function(x, y, key)
+		if key == 1 then
+			self.engine.world:setBlock(self.cursorx, self.cursory, self.cursorz, self.currentBlockId)
+		elseif key == 2 then
+			self.engine.world:setBlock(self.cursorx, self.cursory, self.cursorz, nil)
+		end
+	end)
+	soul.setCallback("keypressed", self, function(key)
+		if key == "right" then
+			self.currentBlockId = self.currentBlockId + 1
+		elseif key == "left" then
+			self.currentBlockId = self.currentBlockId - 1
+		end
+	end)
 end
 
 Camera.unsetCallbacks = function(self)
@@ -36,6 +52,7 @@ Camera.unsetCallbacks = function(self)
 end
 
 Camera.update = function(self)
+	self.engine.infoText.text = "x/y/z: " .. self.cursorx .. "/" .. self.cursory .. "/" .. self.cursorz .. " | " .. self.currentBlockId
 end
 
 Camera.unload = function(self)

@@ -45,6 +45,12 @@ World.getMap = function(self)
 	return self.map
 end
 
+World.setBlock = function(self, x, y, z, blockId)
+	self.map[x] = self.map[x] or {}
+	self.map[x][y] = self.map[x][y] or {}
+	self.map[x][y][z] = blockId
+end
+
 World.update = function(self)
 end
 
